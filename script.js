@@ -16,6 +16,8 @@ const blackBtn = document.querySelector("#black");
 const rainbowBtn = document.querySelector("#rainbow");
 let colorOnHover = "black";
 
+const clearBtn = document.querySelector("#clearBtn");
+
 blackBtn.addEventListener("click",()=>{colorOnHover = "black";})
 rainbowBtn.addEventListener("click",()=>{colorOnHover = "rainbow";})
 
@@ -32,6 +34,11 @@ opacityInput.addEventListener("input",event => {
     opacityValue = event.target.value;
     console.log(opacityValue);
     opacityLabel.textContent = `opacity: ${opacityValue}`;
+})
+
+clearBtn.addEventListener("click",() => {
+    removeExistingGridSquares();
+    addGridSquares();
 })
 
 function addGridSquares(){
