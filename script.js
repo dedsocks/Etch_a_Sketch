@@ -5,10 +5,19 @@ let gridSquare = [];
 let inputLabel = document.querySelector("#inputLabel");
 let inputColumns = document.querySelector("#inputColumns");
 let numberOfColumns = inputColumns.value;
+inputLabel.textContent = `${numberOfColumns} X ${numberOfColumns}`;
+
+let opacityInput = document.querySelector("#opacityInput");
+let opacityLabel = document.querySelector("#opacityLabel");
+opacityValue = opacityInput.value;
+opacityLabel.textContent = `opacity: ${opacityValue}`;
 
 const blackBtn = document.querySelector("#black");
 const rainbowBtn = document.querySelector("#rainbow");
 let colorOnHover = "black";
+
+blackBtn.addEventListener("click",()=>{colorOnHover = "black";})
+rainbowBtn.addEventListener("click",()=>{colorOnHover = "rainbow";})
 
 addGridSquares();
 
@@ -17,6 +26,12 @@ inputColumns.addEventListener("input",event => {
     inputLabel.textContent = `${numberOfColumns} X ${numberOfColumns}`;
     removeExistingGridSquares();
     addGridSquares();
+})
+
+opacityInput.addEventListener("input",event => {
+    opacityValue = event.target.value;
+    console.log(opacityValue);
+    opacityLabel.textContent = `opacity: ${opacityValue}`;
 })
 
 function addGridSquares(){
@@ -30,20 +45,28 @@ function addGridSquares(){
         gridSquare[i].style.flex = "1 0 auto"
         gridSquare[i].style.height = `auto`;
         gridSquare[i].style.aspectRatio = "1/1";
+        gridSquare[i].style.background = "rgba(255, 255, 255, 0)";
 
         gridSquare[i].classList.add("gridChild");
         gridSquare[i].classList.toggle("defaultGridChildColor"); 
 
 
         gridSquare[i].addEventListener("mouseover",()=>{
+            let alphaValue = getCurrentAlphaValue(gridSquare[i]);
             switch(colorOnHover){
-                case "black":
-                    gridSquare[i].style.backgroundColor = `rgba(0,0,0,1)`;
-                    break;
-                case "rainbow":
-                    gridSquare[i].style.backgroundColor = `rgba(255,${Math.random()*255},${Math.random()*255},1)`;
-                    break;
+            case "black":
+                if(alphaValue < 1){
+                    gridSquare[i].style.background = `rgba(0,0,0,${alphaValue + opacityValue/100})`;     
+                }
+                else{
+                    gridSquare[i].style.background = `rgba(0,0,0,1)`;
+                }
+                break;
+            case "rainbow":
+                gridSquare[i].style.background = `rgba(255,${Math.random()*255},${Math.random()*255},1)`;
+                break;
             }
+        
         })
 
         gridContainer.appendChild(gridSquare[i]);
@@ -55,5 +78,9 @@ function removeExistingGridSquares(){
     gridContainer.innerHTML = '';
 }
 
-blackBtn.addEventListener("click",()=>{colorOnHover = "black";})
-rainbowBtn.addEventListener("click",()=>{colorOnHover = "rainbow";})
+function getCurrentAlphaValue(domElement){
+    let elementStr = domElement.style.background;
+    elementStr = elementStr.slice(5,elementStr.length-1).split(',');
+    return parseFloat(elementStr[3]);
+}
+
