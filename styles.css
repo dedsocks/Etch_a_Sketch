@@ -1,16 +1,17 @@
 #gridContainer{
     display: flex;
     flex-wrap: wrap;
-    height: 30rem;
-    width: 30rem;
-    border: 0.2rem solid black;
+    height: 500px;
+    width: 500px;
+    border: 0.3rem solid black;
 }
 
 .gridChild{
-    margin: 0px;
-    height: 3rem;
-    width: 3rem;
+    flex-shrink: 1;
     box-sizing: border-box;
     border: 1px solid black;
+}
+
+.defaultGridChildColor{
     background-color: white;
 }

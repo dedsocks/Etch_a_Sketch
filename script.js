@@ -1,33 +1,41 @@
 const gridContainer = document.querySelector("#gridContainer");
-const gridContainerSideLength = gridContainer.offsetWidth; 
+let gridContainerSideLength = 500;
 let gridSquare = [];
 
 let inputLabel = document.querySelector("#inputLabel");
 let inputColumns = document.querySelector("#inputColumns");
-let numberOfColumns = inputColumns.getAttribute("value");
+let numberOfColumns = inputColumns.value;
+
+
+addGridSquares();
 
 inputColumns.addEventListener("input",event => {
     numberOfColumns = event.target.value;
     inputLabel.textContent = `${numberOfColumns} X ${numberOfColumns}`;
     removeExistingGridSquares();
-    changeGridSquares();
+    addGridSquares();
 })
 
-changeGridSquares();
-
-function changeGridSquares(){
+function addGridSquares(){
     let numberOfSquares = numberOfColumns**2; //area of square = side^2
 
     for(let i = 0; i < numberOfSquares; i++){
         gridSquare[i] = document.createElement("div");
-        gridSquare[i].style.height = `${30/numberOfColumns}rem`;
-        gridSquare[i].style.width = `${30/numberOfColumns}rem`;
-        gridSquare[i].classList.add("gridChild"); 
+
+        gridSquare[i].style.width = `${(gridContainerSideLength/numberOfColumns)-0.01}px`;//The 0.01 ensures that the dom elements will be slightly smaller than the parent element so that they can flex and fill up the rest of the area instead of wrapping due to availability of less space because of higher children side values due to css rem calculations.
+        
+        gridSquare[i].style.flex = "1 0 auto"
+        gridSquare[i].style.height = `auto`;
+        gridSquare[i].style.aspectRatio = "1/1";
+        
+        gridSquare[i].classList.add("gridChild");
+        gridSquare[i].classList.toggle("defaultGridChildColor"); 
         gridContainer.appendChild(gridSquare[i]);
     }
 }
 
 function removeExistingGridSquares(){
-    gridContainer.replaceChildren();
+    gridSquare = [];
+    gridContainer.innerHTML = '';
 }
 
