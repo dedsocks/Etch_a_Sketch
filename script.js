@@ -18,10 +18,10 @@ let colorOnHover = "black";
 
 const clearBtn = document.querySelector("#clearBtn");
 
+addGridSquares();
+
 blackBtn.addEventListener("click",()=>{colorOnHover = "black";})
 rainbowBtn.addEventListener("click",()=>{colorOnHover = "rainbow";})
-
-addGridSquares();
 
 inputColumns.addEventListener("input",event => {
     numberOfColumns = event.target.value;
