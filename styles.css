@@ -1,7 +1,13 @@
-body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+*{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 900;
+}
+
+#header{
+    text-align: center;
+    font-size: 4.8rem;
+    margin-top: -10px;
+    margin-bottom: -10px;
 }
 
 #main{
@@ -9,7 +15,9 @@ body{
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
 }
 
 #gridContainer{
@@ -18,6 +26,13 @@ body{
     height: 500px;
     width: 500px;
     border: 0.3rem solid black;
+    margin-bottom: 2%; 
+    transition: 0.2s;
+}
+
+#gridContainer:hover{
+    transform: translate( -10px, -10px);
+    box-shadow: 8px 8px 5px rgba(0,0,0,0.3);
 }
 
 .gridChild{
@@ -41,10 +56,71 @@ body{
     text-align: center;
 }
 
+input[type="range"] {
+  -webkit-appearance: none; 
+  -moz-appearance: none;    
+  appearance: none;         
+  background: transparent;  
+  cursor: pointer;          
+  width: 100%;              
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  box-sizing: border-box;  
+  background: #ddd;
+  height: 30px;
+  border: 0.3rem solid black;
+}
+
+input[type="range"]::-moz-range-track {
+  box-sizing: border-box;  
+  background: #ddd;
+  height: 30px;
+  border: 0.3rem solid black;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; 
+  height: 35px;            
+  width: 20px;            
+  background: #000000;             
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 35px;            
+  width: 20px;
+  border-radius: 0%;            
+  background: #000000; 
+  border-color: #000000;          
+}
+
 #buttonHolder{
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 10%;
+    margin-right: 38%;
+}
+
+.brushButtons{
+    box-sizing: border-box;
+    padding: 29% 16%;
+    color: white;
+    border: none;
+    border-radius: 100%;
+    transition: transform 0.1s ease-in-out;
+}
+
+#black{
+    background-color: black;
+}
+
+#random{
+    background-color: rgb(255, 5, 88);
+    padding: 2% 10%;
+}
+
+.brushButtons:hover{
+    transform: scale(1.06);
 }
 
 #outputHolder{
@@ -52,6 +128,21 @@ body{
 }
 
 #clearBtn{
-    width: 50px;
-    margin: auto;
+    box-sizing: border-box;
+    border: 0.3rem solid black;
+    padding: 0.5rem 0.4rem;
+}
+
+footer{
+    margin-top: auto;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+footer img{
+    height: 2rem;
+    width: auto;
 }

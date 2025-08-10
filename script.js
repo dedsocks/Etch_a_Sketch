@@ -10,10 +10,10 @@ inputLabel.textContent = `${numberOfColumns} X ${numberOfColumns}`;
 let opacityInput = document.querySelector("#opacityInput");
 let opacityLabel = document.querySelector("#opacityLabel");
 opacityValue = opacityInput.value;
-opacityLabel.textContent = `opacity: ${opacityValue}`;
+opacityLabel.textContent = `OPACITY : ${opacityValue}`;
 
 const blackBtn = document.querySelector("#black");
-const rainbowBtn = document.querySelector("#rainbow");
+const randomBtn = document.querySelector("#random");
 let colorOnHover = "black";
 
 const clearBtn = document.querySelector("#clearBtn");
@@ -21,7 +21,7 @@ const clearBtn = document.querySelector("#clearBtn");
 addGridSquares();
 
 blackBtn.addEventListener("click",()=>{colorOnHover = "black";})
-rainbowBtn.addEventListener("click",()=>{colorOnHover = "rainbow";})
+randomBtn.addEventListener("click",()=>{colorOnHover = "random";})
 
 inputColumns.addEventListener("input",event => {
     numberOfColumns = event.target.value;
@@ -33,7 +33,7 @@ inputColumns.addEventListener("input",event => {
 opacityInput.addEventListener("input",event => {
     opacityValue = event.target.value;
     console.log(opacityValue);
-    opacityLabel.textContent = `opacity: ${opacityValue}`;
+    opacityLabel.textContent = `OPACITY : ${opacityValue}`;
 })
 
 clearBtn.addEventListener("click",() => {
@@ -69,7 +69,7 @@ function addGridSquares(){
                     gridSquare[i].style.background = `rgba(0,0,0,1)`;
                 }
                 break;
-            case "rainbow":
+            case "random":
                 gridSquare[i].style.background = `rgba(255,${Math.random()*255},${Math.random()*255},1)`;
                 break;
             }
